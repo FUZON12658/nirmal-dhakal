@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Anek_Tamil } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
+import { PageProvider } from "@/contexts/PageContext";
 
 const anekTamil = Anek_Tamil({
   variable: "--font-anek-tamil",
@@ -21,8 +22,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${anekTamil.variable} antialiased`}>
-        <Navbar />
-        {children}
+        <PageProvider>
+          <Navbar />
+          {children}
+        </PageProvider>
       </body>
     </html>
   );

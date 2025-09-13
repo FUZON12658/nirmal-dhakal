@@ -1,10 +1,14 @@
+"use client";
+import { useState } from "react";
 import Link from "next/link";
+import { usePageContext } from "@/contexts/PageContext";
 
 const ROUTES = [
-  { path: "#about-me", label: "About Me" },
-  { path: "#social-life", label: "Social Life" },
+  { index: 0, label: "Welcome" },
+  { index: 1, label: "Social Life" },
+  { index: 2, label: "Personal Life" },
   { path: "#lets-connect", label: "Let's Connect" },
-];
+] as Array<{ index?: number; path?: string; label: string }>;
 
 const SOCIALS = [
   {
@@ -182,32 +186,115 @@ const SOCIALS = [
 ];
 
 const Navbar = () => {
+  const { selected, setSelected } = usePageContext();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <div className="threshold flex justify-between items-center h-24">
+    <div className="threshold flex justify-between items-center h-24 relative">
       <h2 className="text-3xl">
         Nirmal <strong>Dhakal</strong>
       </h2>
-      <nav>
-        <ul className="flex space-x-24">
+
+      {/* Desktop Navigation */}
+      <nav className="hidden max-82rem:hidden lg:block">
+        <ul className="flex space-x-18">
           {ROUTES.map((route) => (
-            <li key={route.path}>
-              <Link
-                href={route.path}
-                className="underline-offset-4 font-medium hover-underline-animation"
-              >
-                {route.label}
-              </Link>
+            <li key={route.label}>
+              {route.path ? (
+                <Link
+                  href={route.path}
+                  className="underline-offset-4 font-medium hover-underline-animation"
+                >
+                  {route.label}
+                </Link>
+              ) : (
+                <button
+                  onClick={() => setSelected(route.index!)}
+                  className={`underline-offset-4 font-medium hover-underline-animation cursor-pointer ${
+                    selected === route.index ? "font-bold" : ""
+                  }`}
+                >
+                  {route.label}
+                </button>
+              )}
             </li>
           ))}
         </ul>
       </nav>
-      <div className="flex space-x-2">
+
+      {/* Desktop Social Links */}
+      <div className="hidden max-82rem:hidden lg:flex space-x-2">
         {SOCIALS.map((social) => (
           <Link href={social.link} className="p-2" key={social.link}>
             {social.icon}
           </Link>
         ))}
       </div>
+
+      {/* Mobile Hamburger Button */}
+      <button
+        className="lg:hidden flex flex-col space-y-1 p-2"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        aria-label="Toggle menu"
+      >
+        <span
+          className={`w-6 h-0.5 bg-black transition-transform duration-300 ${
+            isMenuOpen ? "rotate-45 translate-y-1.5" : ""
+          }`}
+        ></span>
+        <span
+          className={`w-6 h-0.5 bg-black transition-opacity duration-300 ${
+            isMenuOpen ? "opacity-0" : ""
+          }`}
+        ></span>
+        <span
+          className={`w-6 h-0.5 bg-black transition-transform duration-300 ${
+            isMenuOpen ? "-rotate-45 -translate-y-1.5" : ""
+          }`}
+        ></span>
+      </button>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="absolute top-full left-0 right-0 bg-white border-t border-gray-200 lg:hidden z-50">
+          <nav className="threshold py-4">
+            <ul className="space-y-4">
+              {ROUTES.map((route) => (
+                <li key={route.label}>
+                  {route.path ? (
+                    <Link
+                      href={route.path}
+                      className="block py-2 font-medium hover:text-gray-600"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {route.label}
+                    </Link>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        setSelected(route.index!);
+                        setIsMenuOpen(false);
+                      }}
+                      className={`block py-2 font-medium hover:text-gray-600 text-left ${
+                        selected === route.index ? "font-bold" : ""
+                      }`}
+                    >
+                      {route.label}
+                    </button>
+                  )}
+                </li>
+              ))}
+            </ul>
+            <div className="flex space-x-4 mt-6 pt-4 border-t border-gray-200">
+              {SOCIALS.map((social) => (
+                <Link href={social.link} className="p-2" key={social.link}>
+                  {social.icon}
+                </Link>
+              ))}
+            </div>
+          </nav>
+        </div>
+      )}
     </div>
   );
 };
