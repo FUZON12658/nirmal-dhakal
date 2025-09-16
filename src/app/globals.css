@@ -90,3 +90,11 @@ body {
 .shiny-text.disabled {
   animation: none;
 }
+
+
+@media screen and (max-width: 1440px) {
+  html {
+    font-size: 1.11vw !important;
+  }
+  
+}

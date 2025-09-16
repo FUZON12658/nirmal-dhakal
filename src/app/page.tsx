@@ -32,7 +32,7 @@ export default function Home() {
   };
 
   return (
-    <div className="lg:h-dynamic overflow-hidden">
+    <div className="lg:h-dynamic min-h-[calc(100vh-6rem)] relative overflow-hidden">
       <div className="threshold flex flex-col justify-start relative lg:flex-row lg:justify-end">
         <div className="flex flex-col w-full p-8 overflow-hidden lg:w-1/2 lg:order-1 lg:p-16 order-2">
           <TextFade
@@ -45,12 +45,6 @@ export default function Home() {
               {getContent().content}
             </p>
             <div className="flex justify-between items-center">
-              <Image
-                src="/signature.svg"
-                alt="signature"
-                width={81}
-                height={57}
-              />
               {!selected && (
                 <button className="ring-2 ring-gray-300 hover:ring-gray-600 px-4 py-2 lg:px-16 lg:py-4 font-semibold cursor-pointer duration-200">
                   Let's Connect
@@ -58,7 +52,7 @@ export default function Home() {
               )}
             </div>
           </TextFade>
-          <div className="flex flex-col gap-4 py-4 lg:gap-8 lg:py-8 lg:flex-row items-center order-1 lg:order-2">
+          {/* <div className="flex flex-col gap-4 py-4 lg:gap-8 lg:py-8 lg:flex-row items-center order-1 lg:order-2">
             {options.map((option, index) => (
               <h3
                 key={index}
@@ -70,20 +64,20 @@ export default function Home() {
                 {option}
               </h3>
             ))}
-          </div>
+          </div> */}
         </div>
-        <div className="z-50 w-full px-8 h-auto relative order-1 lg:w-1/2 lg:px-32 lg:h-dynamic lg:overflow-y-hidden lg:absolute lg:-top-0 lg:left-0 flex items-center">
+        <div className="z-50 w-full px-8 h-auto  relative order-1 lg:w-1/2 lg:px-32 lg:h-dynamic lg:overflow-y-hidden lg:absolute lg:-top-0 lg:left-0 flex items-center">
           <Image
             className={
-              "w-full h-full max-h-[400px] object-cover lg:max-h-[954px] " +
+              "w-full h-full max-h-[25rem] object-cover lg:max-h-[59.625rem] " +
               (selected !== 1 ? "object-top" : "object-center")
             }
             src={
               selected === 0
                 ? `/nirmal-dhakal.png`
                 : selected === 1
-                ? `/social-life.jpg`
-                : `/personal-life.jpg`
+                ? `/social-life.png`
+                : `/personal-life.png`
             }
             alt="nirmal-dhakal"
             width={530 / 2}
@@ -92,7 +86,7 @@ export default function Home() {
         </div>
         <div className="order-1 w-2/3 px-32 h-dynamic overflow-y-hidden absolute -top-0 -left-32">
           <Image
-            className="w-full h-full max-h-[400px] object-cover object-top lg:max-h-[954px]"
+            className="w-full h-full max-h-[59.625rem] object-cover object-top lg:max-h-[59.625rem]"
             src="/shimmering.png"
             alt="shimmering"
             width={1590 / 2}
@@ -100,7 +94,7 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="w-full -translate-y-1/5 left-1/2 top-[50%] lg:-bottom-10 lg:top-auto">
+      <div className="w-full left-0 md:-bottom-10 absolute">
         <ShinyText
           text="Nirmal Dhakal"
           className="bg-black font-bold text-nowrap leading-[80%] text-[calc(100vw/6.7)] "
