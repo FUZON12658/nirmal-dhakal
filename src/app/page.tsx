@@ -1,7 +1,8 @@
 "use client";
-import { TextFade } from "@/components/animation/text-fade";
+import ShinyText from "@/components/animation/shiny-text";
 import Image from "next/image";
 import { usePageContext } from "@/contexts/PageContext";
+import { TextFade } from "@/components/animation/text-fade";
 
 export default function Home() {
   const { selected, setSelected, options } = usePageContext();
@@ -71,25 +72,40 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <div className="w-full px-8 h-auto relative top-0 order-1 lg:w-1/2 lg:px-32 lg:h-dynamic lg:overflow-y-hidden lg:absolute lg:-top-0 lg:left-0">
+        <div className="z-50 w-full px-8 h-auto relative order-1 lg:w-1/2 lg:px-32 lg:h-dynamic lg:overflow-y-hidden lg:absolute lg:-top-0 lg:left-0 flex items-center">
           <Image
-            className="w-full h-full max-h-[400px] object-cover object-top lg:max-h-[954px]"
-            src="/nirmal-dhakal.png"
+            className={
+              "w-full h-full max-h-[400px] object-cover lg:max-h-[954px] " +
+              (selected !== 1 ? "object-top" : "object-center")
+            }
+            src={
+              selected === 0
+                ? `/nirmal-dhakal.png`
+                : selected === 1
+                ? `/social-life.jpg`
+                : `/personal-life.jpg`
+            }
             alt="nirmal-dhakal"
             width={530 / 2}
             height={1166 / 2}
           />
         </div>
+        <div className="order-1 w-2/3 px-32 h-dynamic overflow-y-hidden absolute -top-0 -left-32">
+          <Image
+            className="w-full h-full max-h-[400px] object-cover object-top lg:max-h-[954px]"
+            src="/shimmering.png"
+            alt="shimmering"
+            width={1590 / 2}
+            height={1590 / 2}
+          />
+        </div>
       </div>
-      <p
-        className="text-gray-100 absolute top-50 left-1/2 font-bold text-nowrap leading-[80%] -z-10 w-full lg:bottom-0 lg:top-auto"
-        style={{
-          fontSize: "calc(100vw / 6.7)",
-          transform: "translate(-50%, -20%)",
-        }}
-      >
-        Nirmal Dhakal
-      </p>
+      <div className="w-full -translate-y-1/5 left-1/2 top-[50%] lg:-bottom-10 lg:top-auto">
+        <ShinyText
+          text="Nirmal Dhakal"
+          className="bg-black font-bold text-nowrap leading-[80%] text-[calc(100vw/6.7)] "
+        />
+      </div>
     </div>
   );
 }
