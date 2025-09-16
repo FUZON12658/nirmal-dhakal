@@ -213,7 +213,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="threshold flex justify-between items-center h-24 relative">
+    <div className="threshold flex z-[99999] justify-between items-center h-24 relative">
       <h2 className="text-3xl">
         <Image src="/signature.svg" alt="signature" width={81} height={57} />
       </h2>
