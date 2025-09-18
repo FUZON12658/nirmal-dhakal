@@ -90,3 +90,17 @@ body {
 .shiny-text.disabled {
   animation: none;
 }
+
+
+@media screen and (max-width: 1440px) {
+  html {
+    font-size: 1.11vw !important;
+  }
+  
+}
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 4.11vw !important;
+  }
+  
+}
