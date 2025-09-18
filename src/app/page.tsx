@@ -12,17 +12,17 @@ export default function Home() {
       case 0:
         return {
           content:
-            "Welcome to my digital space! I'm passionate about creating meaningful experiences through technology and design. With a love for innovation and problem-solving, I strive to build solutions that make a difference.\n\nWhen I'm not coding, you'll find me exploring new technologies, reading about design trends, or working on personal projects that challenge my creativity.",
+            "Welcome to my digital space! I'm Nirmal Dhakal, an entrepreneur and tech enthusiast based in Bishalnagar, Kathmandu. As the Founder & CEO of Iru Tech Pvt Ltd, I'm passionate about leveraging technology to create innovative solutions that drive business growth.\n\nWith a Master's degree in Political Science and extensive experience in both technology and event management through EMall International, I bring a unique perspective that combines analytical thinking with creative problem-solving. Through Nivaan Holdings, I continue to explore new ventures and opportunities in the evolving business landscape.",
         };
       case 1:
         return {
           content:
-            "I believe in the power of community and meaningful connections. You'll often find me at tech meetups, design conferences, and networking events where I love sharing ideas and learning from others.\n\nI'm active on social platforms where I share my journey, insights about technology, and connect with like-minded individuals. Building relationships and collaborating with diverse teams energizes me.",
+            "Community service and leadership are integral parts of my life. I'm honored to serve as President of Rotary Club of Matribhumi Baluwatar for 2025/2026, where I work alongside dedicated individuals to make a positive impact in our community.\n\nAs an entrepreneur leading multiple ventures, I believe in the power of networking and collaboration. Whether it's through Rotary activities, tech industry events, or business forums, I'm always excited to connect with like-minded individuals who share a passion for innovation and social responsibility.",
         };
       case 2:
         return {
           content:
-            "Outside of work, I'm someone who values balance and personal growth. I enjoy reading books on philosophy and psychology, practicing mindfulness, and staying active through hiking and fitness.\n\nFamily and friends are incredibly important to me. I love hosting dinner parties, exploring new restaurants, and traveling to experience different cultures. These experiences shape my perspective and creativity.",
+            "Family is the cornerstone of my life. I'm blessed to share this journey with my wonderful wife, Ankita Koirala, and our two amazing sons, Nivaan and Aniv Dhakal. They inspire me every day and remind me of what truly matters.\n\nI have deep respect for my mother, Ambika Dhakal, who has been my guiding light, and I cherish the strong bond I share with my brothers, Kamal and Bimal Dhakal. Born on August 14th, I believe in maintaining work-life balance while pursuing my entrepreneurial dreams and contributing to society through meaningful service.",
         };
       default:
         return {
@@ -44,6 +44,54 @@ export default function Home() {
             <p className="text-lg leading-relaxed whitespace-pre-line">
               {getContent().content}
             </p>
+
+            {/* Personal Information Section - Only show on Welcome tab */}
+            {selected === 0 && (
+              <div className="bg-gray-50 px-6  py-2 rounded-lg border-l-4 border-gray-300">
+                <h3 className="font-semibold text-xl mb-4 text-gray-800">
+                  Personal Information
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                  <div className="flex justify-between">
+                    <span className="font-medium text-gray-600">Email:</span>
+                    <span className="text-gray-800">
+                      hello@nirmaldhakal.com
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="font-medium text-gray-600">Address:</span>
+                    <span className="text-gray-800">
+                      Bishalnagar, Kathmandu
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="font-medium text-gray-600">DOB:</span>
+                    <span className="text-gray-800">14 Aug</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="font-medium text-gray-600">
+                      Blood Group:
+                    </span>
+                    <span className="text-gray-800">A+ve</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="font-medium text-gray-600">
+                      Nationality:
+                    </span>
+                    <span className="text-gray-800">Nepali</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="font-medium text-gray-600">
+                      Education:
+                    </span>
+                    <span className="text-gray-800">
+                      M.A. Political Science
+                    </span>
+                  </div>
+                </div>
+              </div>
+            )}
+
             <div className="flex justify-between items-center">
               <Image
                 src="/signature.svg"
@@ -82,8 +130,8 @@ export default function Home() {
               selected === 0
                 ? `/nirmal-dhakal.png`
                 : selected === 1
-                ? `/social-life.jpg`
-                : `/personal-life.jpg`
+                ? `/nirmal-dhakal-1.png`
+                : `/nirmal-dhakal-2.png`
             }
             alt="nirmal-dhakal"
             width={530 / 2}
